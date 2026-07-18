@@ -1,0 +1,51 @@
+* Pieces
+** Slide Effects
+#+BEGIN_SRC common-lisp
+
+  (:div.col-xl-4
+   :data-cues "slideInUp"
+   :data-duration *slide-duration*
+   (loop for s in (subseq *services* 0 4)
+         do (service-item (getf s :icon) (getf s :title))))
+
+#+END_SRC
+
+** Parallax Images -> Ukiyo.js
+#+BEGIN_SRC common-lisp
+
+  (:img.ukiyo
+   :src "/static/images/service-img.jpg"
+   :alt "service-img")
+
+#+END_SRC
+
+** Newsletter
+#+BEGIN_SRC common-lisp
+
+  (:div.footer-single-widget.newsletter-form
+	 (:h3 "Subscribe Newsletter")
+	 (:p "Stay connected with the latest news, helpful tips, and heartwarming stories from our blog")
+	 (:form.position-relative.z-1.mb-3
+	  (:input.form-control
+	   :type "email"
+	   :placeholder "Enter Your Email")
+	  (:button.submit-btn.position-absolute.top-50.end-0.translate-middle-y
+	   :type "submit"
+	   (:i.bi.bi-send-fill
+	    :style "font-size: 1.5rem; color: white;")))
+	 (:div.form-check
+	  (:input.form-check-input
+	   :type "checkbox" :value "" :id "checkDefault")
+	  (:label.form-check-label
+	   :for "checkDefault"
+	   "I understand and agree to the "
+	   (:a :href "/terms-conditions" "Terms & Conditions"))))
+
+#+END_SRC
+
+* Details
+- Logo is off, will gen. new
+
+* Questions
+- FAQ - Cleaners insured?
+- FAQ - Cleaning supplies?
