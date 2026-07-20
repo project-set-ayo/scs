@@ -93,7 +93,9 @@
        (:div.d-flex.flex-column.gap-2
 	(:span.h5.fw-bold "Our Services")
 	(dolist (l *services*)
-	  (:span (cadr l))))
+	  (:a.text-decoration-none.text-light
+	   :href "/our-services"
+	   (:span (cadr l)))))
 
        (:div.d-flex.flex-column.gap-2
 	(:span.h5.fw-bold "Service Locations")
@@ -260,13 +262,13 @@
 
 (defun service-card (icon title desc)
   (with-html
-    (:div.p-4.border.rounded.bg-white.d-flex.flex-column.gap-3
+    (:div.p-4.border.rounded.bg-white.d-flex.flex-column.gap-3.h-100
      (:img :src icon
 	   :alt "service"
 	   :style "width: 4rem;")
      (:div.d-flex.flex-column
       (:h3.mb-2 title)
-      (:p.text-secondary desc)))))
+      (:p.text-secondary.mb-0 desc)))))
 
 (defun render-about-us-section (&key (btn-text "Contact Us Today")
 				  (btn-link "/contact-us"))
