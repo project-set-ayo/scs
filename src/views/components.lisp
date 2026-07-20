@@ -165,11 +165,12 @@
 	(:span.subtitle.w-50 "We don't just clean spaces - we create healthy, spotless environments you can trust. Whether it's your home or your office, we take care of the details so you can enjoy your space. We clean, you relax.")
 	(:div.d-flex.align-items-center.gap-3
 	 (:a.btn.btn-primary.fw-bold
-	  "Get your Free Estimate"
-	  (:i.bi.bi-arrow-right-circle-fill.ms-2))
+	  :href "/contact-us"
+	  "Get a Free Estimate")
 	 (:a.btn.btn-secondary.fw-bold
-	  (format nil "Call ~a"
-		  (format-phone (utils:config :business-phone)))))))))))
+	  :href "/our-services"
+	  "Our Services"
+	  (:i.bi.bi-arrow-right-circle-fill.ms-2)))))))))
 
 (defun render-how-it-works ()
   (with-html
@@ -212,54 +213,6 @@
       (:div.icon.rounded-circle.d-flex.justify-content-center.align-items-center
        (:img :src icon :alt "service")))
      (:div.flex-grow-1
-      (:h3 title)))))
-
-(defun fun-fact-item (count suffix title)
-  (with-html
-    (:div.col-lg-3.col-sm-6
-     (:div.fun-fact-single-item.d-flex.justify-content-center.align-items-center
-      (:div
-       (:i.bi.bi-heart-pulse-fill
-	:style "font-size: 3rem;")
-       (:h2 (:span.counter count) suffix)
-       (:p title))))))
-
-(defun check-list-item (text &key (text-class "text-secondary"))
-  (with-html
-    (:li.d-flex.gap-12.align-items-center
-     (:i.bi.bi-check-circle-fill.text-dark
-      :style "font-size: 3rem;")
-     (:span :class text-class text))))
-
-(defun case-study-item (count title text img)
-  (with-html
-    (:a.case-study-single-item.d-flex.flex-wrap.gap-20.justify-content-between.align-items-center.text-decoration-none
-     :href "/single-cause"
-     (:div.d-sm-flex.align-items-center.gap-25
-      (:div.flex-shrink-0.mb-2.mb-sm-0
-       (:span.count count))
-      (:div.flex-grow-1
-       (:h3 title)))
-     (:p text)
-     (:div.case-study-img
-      (:img.img :src img :alt "case-study")
-      (:span.read
-       (:i.bi.bi-arrow-right.text-white :style "font-size: 1.5rem;"))))))
-
-(defun blog-list-item (img date comments title)
-  (with-html
-    (:a.blog-single-item.text-decoration-none.d-sm-flex.align-items-center.border-bottom
-     :href "/single-blog"
-     (:div.flex-shrink-0.mb-3.mb-sm-0
-      (:img :src img :alt "blog"))
-     (:div.flex-grow-1
-      (:div.d-flex.info
-       (:div.d-flex.align-items-center.gap-10
-        (:i.bi.bi-calendar-week.text-primary)
-        (:span.fs-15 date))
-       (:div.d-flex.align-items-center.gap-10
-        (:i.bi.bi-chat-left-text.text-primary)
-        (:span.fs-15 comments)))
       (:h3 title)))))
 
 (defun faq-item (target parent question answer &key show)
