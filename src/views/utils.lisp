@@ -24,7 +24,7 @@
 
     (:title "Residential Cleaning"
      :icon "/static/images/apartment.png"
-     :desc "Come home to a spotless sanctuary every single day. We handle the chores so you can spend your free time doing what you love.")))
+     :desc "Keep your household running smoothly with our comprehensive house cleaning. We tackle the daily dust and dirt so your family can relax in a healthy, immaculate home.")))
 
 (defparameter *faqs*
   '((:question "What services do you offer?"
@@ -37,7 +37,7 @@
      :answer "If it has been a few months since your space had a thorough scrub, or if you are preparing to host an event, a Deep Clean is ideal. It targets neglected areas like baseboards, window tracks, and heavy dust buildup.")
     
     (:question "Will I have the same cleaner every time?"
-     :answer "If you prefer? Yes! We strive to send the same trusted cleaning professional to your home or office for every scheduled visit. This ensures consistent quality and allows our team to learn your exact preferences.")
+     :answer "If you prefer, yes! We strive to send the same trusted cleaning professional to your home or office for every scheduled visit. This ensures consistent quality and allows our team to learn your exact preferences.")
     
     (:question "What is the process for getting started?"
      :answer "It's completely hassle-free. Simply reach out to us for a free estimate. We will discuss your specific space, outline your cleaning goals, and build a customized schedule that fits your life.")
