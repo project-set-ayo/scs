@@ -40,14 +40,14 @@
 
 (defun generate-user-confirmation-text (name)
   "Generates plaintext auto-reply for the user."
-  (format nil "Dear ~A,~%~%Thank you for reaching out to ~A. We have received your message and one of our care specialists will review it and get back to you shortly.~%~%Warm regards,~%The ~A Team~%"
+  (format nil "Dear ~A,~%~%Thank you for reaching out to ~A. We have received your message and a team member will be in touch shortly.~%~%Warm regards,~%The ~A Team~%"
           name (utils:config :business-name) (utils:config :business-name)))
 
 (defun generate-user-confirmation-html (name)
   "Generates HTML auto-reply for the user."
   (with-email-layout (:title "We received your message")
     (:p (format nil "Dear ~A," name))
-    (:p (format nil "Thank you for reaching out to ~A. We have received your message and one of our care specialists will review it and get back to you shortly."
+    (:p (format nil "Thank you for reaching out to ~A. We have received your message and a team member will be in touch shortly."
                 (utils:config :business-name)))
     (:p "Warm regards," (:br)
         (:strong (format nil "The ~A Team" (utils:config :business-name))))))

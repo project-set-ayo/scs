@@ -93,7 +93,9 @@
        (:div.d-flex.flex-column.gap-2
 	(:span.h5.fw-bold "Our Services")
 	(dolist (l *services*)
-	  (:span (cadr l))))
+	  (:a.text-decoration-none.text-light
+	   :href "/our-services"
+	   (:span (cadr l)))))
 
        (:div.d-flex.flex-column.gap-2
 	(:span.h5.fw-bold "Service Locations")
@@ -178,7 +180,9 @@
      :data-cues "slideInUp" :data-duration "900"
      (:span.display-3.fw-bold.text-center "How it Works")
      
-     (:div.d-flex.justify-content-evenly.align-items-baseline.gap-3
+     ;; Responsive Wrapper: Column on mobile, Row on Large (lg) screens
+     (:div.d-flex.flex-column.flex-lg-row.justify-content-lg-evenly.align-items-center.align-items-lg-baseline.gap-5.gap-lg-3
+      
       (:div.card.border-0.text-center.mb-3
        :style "width: 16rem;"
        (:img.card-img-top
@@ -258,13 +262,13 @@
 
 (defun service-card (icon title desc)
   (with-html
-    (:div.p-4.border.rounded.bg-white.d-flex.flex-column.gap-3
+    (:div.p-4.border.rounded.bg-white.d-flex.flex-column.gap-3.h-100
      (:img :src icon
 	   :alt "service"
 	   :style "width: 4rem;")
      (:div.d-flex.flex-column
       (:h3.mb-2 title)
-      (:p.text-secondary desc)))))
+      (:p.text-secondary.mb-0 desc)))))
 
 (defun render-about-us-section (&key (btn-text "Contact Us Today")
 				  (btn-link "/contact-us"))
@@ -306,36 +310,38 @@
         :href btn-link
         btn-text))))))
 
-(defun render-contact-us-section (&key include-spacer)
-  "A simple contact section displaying services and a call-to-order widget."
+(defun render-contact-us-section (&key include-spacer success error)
+  "A split layout displaying the inquiry form and business services."
   (with-html
-    (:div.container
-     (when include-spacer
-       (:div :style "margin-top: 4rem;"))
-     (:div.row.g-5.align-items-center
-      (:div.col-lg-6
-       :data-cues "slideInUp" :data-duration "900"
-       (:h2.main-title.mb-4 "Ready to Experience the Elite?")
-       (:p.mb-4.fs-5 "We are here to provide top-tier cleaning tailored to your needs. Get in touch today to schedule any of our specialized services:")
+    (:div.contact-us-area.py-5
+     (:div.container
+      (when include-spacer
+        (:div :style "margin-top: 4rem;"))
+      (:div.row.g-5
        
-       ;; Dynamic list of services
-       (:ul.list-unstyled.mb-5.d-flex.flex-column.gap-3
-	(loop for s in *services*
-	      do (:li.d-flex.align-items-center.gap-3
-		  (:div.d-flex.justify-content-center.align-items-center.bg-success.bg-opacity-10.rounded-circle
-		   :style "width: 40px; height: 40px;"
-		   (:i.bi.bi-check2.text-success.fs-4))
-		  (:span.fw-bold.fs-5 (getf s :title)))))
+       ;; Left Column: The Form
+       (:div.col-lg-7
+        :data-cues "slideInUp" :data-duration "900"
+        (:h2.main-title.mb-3 "Send Us A Message")
+        (:p.text-secondary.mb-4 "Have a specific cleaning request, need a custom quote, or just want to say hello? Fill out the form below and we will get back to you shortly.")
+        (contact-us-form :success success :error error)) ;; <--- ADDED :error here
        
-       ;; Call Widget
-       (:div
-	:style "max-width: 400px;"
-	(display-call-to-order-widget
-	 (utils:config :business-phone) 
-	 :msg "Book Your Cleaning Today!")))
-      
-      (:div.col-lg-6
-       (:img.img-fluid.rounded.ukiyo :src "/static/images/hero-countertop.png" :alt "contact-us"))))))
+       ;; Right Column: Services & Widget
+       (:div.col-lg-5
+        :data-cues "slideInUp" :data-duration "900"
+        (:div.bg-light.p-4.rounded.shadow-sm.h-100
+         (:h3.mb-4 "Ready for the Elite?")
+         (:ul.list-unstyled.mb-5.d-flex.flex-column.gap-3
+          (loop for s in *services*
+                do (:li.d-flex.align-items-center.gap-3
+                    (:div.d-flex.justify-content-center.align-items-center.bg-primary.bg-opacity-10.rounded-circle
+                     :style "width: 40px; height: 40px;"
+                     (:i.bi.bi-check2.text-primary.fs-4))
+                    (:span.fw-medium.fs-5 (getf s :title)))))
+         (:div.mt-auto
+          (display-call-to-order-widget
+           (utils:config :business-phone) 
+           :msg "Book Your Cleaning Today!")))))))))
 
 (defun render-marquee (features &key feature-classes del-classes)
   (with-html
