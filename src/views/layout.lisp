@@ -24,7 +24,14 @@
        (:link :rel "stylesheet" :href "/static/css/swiper-bundle.min.css")
        (:link :rel "stylesheet" :href "/static/css/scrollCue.css")
        (:link :rel "stylesheet" :href "/static/css/tabler-icons.min.css")
-       (:link :rel "stylesheet" :href "/static/css/main.css"))
+       (:link :rel "stylesheet" :href "/static/css/main.css")
+       (:style 
+        "@media (max-width: 767.98px) {
+           .container {
+             padding-left: 1.5rem !important;
+             padding-right: 1.5rem !important;
+           }
+         }"))
       
       (:body
        ,@body
