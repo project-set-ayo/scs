@@ -318,15 +318,6 @@
       (when include-spacer
         (:div :style "margin-top: 4rem;"))
       (:div.row.g-5
-       
-       ;; Left Column: The Form
-       (:div.col-lg-7
-        :data-cues "slideInUp" :data-duration "900"
-        (:h2.main-title.mb-3 "Send Us A Message")
-        (:p.text-secondary.mb-4 "Have a specific cleaning request, need a custom quote, or just want to say hello? Fill out the form below and we will get back to you shortly.")
-        (contact-us-form :success success :error error)) ;; <--- ADDED :error here
-       
-       ;; Right Column: Services & Widget
        (:div.col-lg-5
         :data-cues "slideInUp" :data-duration "900"
         (:div.bg-light.p-4.rounded.shadow-sm.h-100
@@ -341,7 +332,13 @@
          (:div.mt-auto
           (display-call-to-order-widget
            (utils:config :business-phone) 
-           :msg "Book Your Cleaning Today!")))))))))
+           :msg "Book Your Cleaning Today!"))))
+
+       (:div.col-lg-7
+        :data-cues "slideInUp" :data-duration "900"
+        (:h2.main-title.mb-3 "Send Us A Message")
+        (:p.text-secondary.mb-4 "Have a specific cleaning request, need a custom quote, or just want to say hello? Fill out the form below and we will get back to you shortly.")
+        (contact-us-form :success success :error error)))))))
 
 (defun render-marquee (features &key feature-classes del-classes)
   (with-html
