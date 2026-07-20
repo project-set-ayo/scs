@@ -73,10 +73,10 @@
 			       (getf s :title)
 			       (getf s :desc)))))))))
 
-(defun display-contact-us-page ()
+(defun display-contact-us-page (&key success error)
   (with-page (:title "Contact Us")
     (page-banner "contact us" '(("Home" . "/") ("Contact Us" . nil)))
-    (render-contact-us-section :include-spacer nil)))
+    (render-contact-us-section :include-spacer nil :success success :error error)))
 
 (defun display-404-page ()
   (with-page (:title "404 - Page Not Found")

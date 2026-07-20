@@ -14,8 +14,9 @@
   (views:display-about-us-page))
 
 (easy-routes:defroute contact-us-page ("/contact-us" :method :get) 
-    ()
-  (views:display-contact-us-page))
+    (&get success error)
+  (views:display-contact-us-page :success (string= success "true")
+                                 :error (string= error "true")))
 
 (easy-routes:defroute faq-page ("/faq" :method :get) 
     ()
@@ -23,15 +24,13 @@
 
 (easy-routes:defroute contact-us-submit ("/contact-us" :method :post) 
     (&post name email phone subject message)
-  ;; Trigger emails
-  (process-inquiry-emails "Contact Request"
-			  name
-			  email
-			  phone
-			  subject
-			  message)
-  ;; Redirect user back to the GET page with a success flag
-  (hunchentoot:redirect "/contact-us?success=true"))
+  (handler-case
+      (progn
+        (process-inquiry-emails "Contact Request" name email phone subject message)
+        (hunchentoot:redirect "/contact-us?success=true"))
+    (error (c)
+      (log:error "Failed to send contact email: ~A" c)
+      (hunchentoot:redirect "/contact-us?error=true"))))
 
 (easy-routes:defroute faq-submit ("/faq" :method :post) 
     (&post name email phone subject message)
