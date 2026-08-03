@@ -6,7 +6,7 @@
      :icon "/static/images/apartment.png"
      :desc "Come home to a spotless sanctuary every single day. We handle the chores so you can spend your free time doing what you love.")
     
-    (:title "Construction Cleaning"
+    (:title "Post-construction Cleaning"
      :icon "/static/images/renovation.png"
      :desc "Transform your messy renovation into a move-in ready masterpiece. We eliminate the lingering dust and debris so your new space truly shines.")
 
@@ -28,7 +28,7 @@
 
 (defparameter *faqs*
   '((:question "What services do you offer?"
-     :answer "At Shinite Cleaning Services, we offer a comprehensive range of professional solutions, including Apartment Cleaning, Office Cleaning, Deep Cleaning, Construction Cleaning, Move-in/Move-out Cleaning and Residential Cleaning.")
+     :answer "At Shinite Cleaning Services, we offer a comprehensive range of professional solutions, including Apartment Cleaning, Office Cleaning, Deep Cleaning, Post-construction Cleaning, Move-in/Move-out Cleaning and Residential Cleaning.")
     
     (:question "Do I need to provide my own cleaning supplies and equipment?"
      :answer "Not at all! We arrive fully equipped with premium, professional-grade cleaning supplies and equipment. However, if you have specific products you would prefer us to use, we are always happy to accommodate.")
